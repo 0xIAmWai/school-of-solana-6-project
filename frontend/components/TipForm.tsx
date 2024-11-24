@@ -2,16 +2,10 @@ import { useState } from 'react';
 import { SendIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { Program } from '@coral-xyz/anchor';
 import { PublicKey, SystemProgram } from '@solana/web3.js';
 import * as anchor from '@coral-xyz/anchor';
-import idl from './../program/mint_me_a_moment.json';
-import { MintMeAMoment } from './../program/mint_me_a_moment';
-import { useAnchorProvider } from '@/pages/_app';
-
-const idlString = JSON.stringify(idl);
-const idlObject = JSON.parse(idlString);
-const creatorAddress = new PublicKey("3k5oyFTAGiL3PpJWVGCS45GiZHpiWf8W6CvsUd1o4FXs");
+import { useAnchorProvider } from "@/utils/anchorProvider";
+import { createProgram, creatorAddress, fetchTipHistory } from "@/utils/programUtils";
 
 export function TipForm({ onTipSuccess }: { onTipSuccess: (tip: any) => void }) {
   const { publicKey } = useWallet();
@@ -30,9 +24,8 @@ export function TipForm({ onTipSuccess }: { onTipSuccess: (tip: any) => void }) 
 
     setIsSubmitting(true);
 
-    try {   
-      
-      const program = new Program<MintMeAMoment>(idlObject, provider);
+    try {         
+      const program = createProgram(provider);
       
       const timestamp = Math.floor(Date.now() / 1000);
       const amountLamports = Math.floor(parseFloat(amount) * anchor.web3.LAMPORTS_PER_SOL);
@@ -63,7 +56,6 @@ export function TipForm({ onTipSuccess }: { onTipSuccess: (tip: any) => void }) 
       onTipSuccess(tx);
       toast.success('Thank you for your tip! 🎉');
       
-      // Reset form
       setMessage('');
       setAmount('');
     } catch (error) {

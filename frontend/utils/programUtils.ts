@@ -5,6 +5,8 @@ import { MintMeAMoment } from "../program/mint_me_a_moment";
 
 const idlObject = JSON.parse(JSON.stringify(idl));
 
+export const creatorAddress = new PublicKey("3k5oyFTAGiL3PpJWVGCS45GiZHpiWf8W6CvsUd1o4FXs");
+
 export function createProgram(provider: AnchorProvider) {
   return new Program<MintMeAMoment>(idlObject, provider);
 }

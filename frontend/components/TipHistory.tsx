@@ -1,44 +1,11 @@
 import { Clock, Coins, User } from 'lucide-react';
-import { PublicKey, Connection } from '@solana/web3.js';
-import { Program, BN, AnchorProvider } from '@coral-xyz/anchor';
-import idl from './../program/mint_me_a_moment.json';
 import { MintMeAMoment } from './../program/mint_me_a_moment';
 import { useConnection } from '@solana/wallet-adapter-react';
 import { useEffect, useState } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { fetchTipHistory } from "@/utils/programUtils";
 
 type TipHistory = MintMeAMoment["accounts"]["tipHistory"];
-
-const idlString = JSON.stringify(idl);
-const idlObject = JSON.parse(idlString);
-
-export async function fetchTipHistory(
-  connection: Connection
-): Promise<TipHistory[]> {
-  // Create a provider to read from the network
-  const provider = new AnchorProvider(
-    connection,
-    // We use a dummy wallet since we're only reading data
-    {
-      publicKey: PublicKey.default,
-      signTransaction: async () => { throw new Error('No signing needed') },
-      signAllTransactions: async () => { throw new Error('No signing needed') },
-    },
-    { commitment: 'confirmed' }
-  );
-
-  const program = new Program<MintMeAMoment>(idlObject, provider);
-
-  // Fetch all tip history accounts
-  // Note: This is a simple implementation. For production, you might want to add pagination
-  try {
-    const accounts = await program.account.tipHistory.all();
-    return accounts.map(account => account.account);
-  } catch (error) {
-    console.error('Error fetching tip history:', error);
-    return [];
-  }
-}
 
 export function TipHistory() {
   const { connection } = useConnection();
@@ -51,7 +18,7 @@ export function TipHistory() {
       try {
         setLoading(true);
         const tipHistory = await fetchTipHistory(connection);
-        // Sort by timestamp, newest first
+
         tipHistory.sort((a, b) => b.timestamp.toNumber() - a.timestamp.toNumber());
         setTips(tipHistory);
         setError(null);

@@ -10,14 +10,14 @@ export function Footer() {
           </div>
           <div className="flex space-x-6">
             <a
-              href="#"
+              href="https://x.com/0xIAmWai"
               className="hover:text-white transition-colors"
               aria-label="Twitter"
             >
               <TwitterIcon size={20} />
             </a>
             <a
-              href="#"
+              href="https://github.com/0xIAmWai"
               className="hover:text-white transition-colors"
               aria-label="GitHub"
             >
