@@ -7,7 +7,7 @@ import * as anchor from '@coral-xyz/anchor';
 import { useAnchorProvider } from "@/utils/anchorProvider";
 import { createProgram, creatorAddress, fetchTipHistory } from "@/utils/programUtils";
 
-export function TipForm({ onTipSuccess }: { onTipSuccess: (tip: any) => void }) {
+export function TipForm({ onTipSuccess }: { onTipSuccess: () => void }) {
   const { publicKey } = useWallet();
   const provider = useAnchorProvider();
   const [message, setMessage] = useState('');
@@ -53,11 +53,11 @@ export function TipForm({ onTipSuccess }: { onTipSuccess: (tip: any) => void }) 
         })
         .rpc();
       
-      onTipSuccess(tx);
+      onTipSuccess();
       toast.success('Thank you for your tip! 🎉');
       
       setMessage('');
-      setAmount('');
+      setAmount('');      
     } catch (error) {
       toast.error('Failed to send tip. Please try again.');
     } finally {
