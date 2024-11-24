@@ -1,92 +1,52 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/wFAkMYEB)
-![School of Solana](https://github.com/Ackee-Blockchain/school-of-solana/blob/master/.banner/banner.png?raw=true)
+# Mint Me A Moment
 
-## 📚Solana Program
-We are more than halfway through the course, and you already have some experience with programming on Solana. It is time to create something on your own! You will be building a dApp that will serve as the culmination of everything you have learned so far. Feel free to implement whatever comes to your mind, (as long as it passes the requirements) it may result in a truly great idea!
+**Mint Me A Moment** is a web3 application on the Solana blockchain that allows supporters to send SOL tips to their favorite creators. Inspired by the "Buy Me a Coffee" concept, this dApp leverages Solana's fast and low-cost transactions.
 
-**This does not mean that the School of Solana is coming to an end just yet!** There are still several exciting lectures ahead, as well as one final task.
+## Features
 
-### Task details
-This task consists of two parts:
-1. **Core of your dApp**
-    - A deployed Solana program.
-2. **Frontend**
-    - A simple frontend to interact with the dApp.
+* **Anchor-based Solana program** for managing tips and tracking history.
+* **React frontend** for a simple and elegant user interface.
+* **Support multiple tips** from tippers with on-chain storage of tip history using PDAs.
 
+## Folder Structure
 
-### Requirements
-- An Anchor program deployed on **Devnet** or **Mainnet**.
-- The Anchor program must use a PDA (Program Derived Address).
-- At least one TypeScript **test** for each Anchor program instruction. These tests should cover both **happy** and **unhappy** (intentional error-triggering) scenarios.
-- A simple **frontend** deployed using your preferred provider (for more info, check below).
-- A **README.md** file that contains:
-    - A brief **description of your project**, explaining how it works and its purpose.
-    - If you have successfully deployed both the Anchor program and the frontend, include a **link** where we can view the results.
-    - Instructions on **how to build and test** your Anchor program locally.
-    - Instructions on **how to run the frontend** app locally (this is optional for those who deploy frontend).
+The repository has the following structure:
 
-### Ideas
-We highly recommended starting with something simple. Take time to think through your project and work on it in iterations. Do not try to implement everything at once!
+### 1. Anchor Program
+The on-chain program handles the logic for tipping and storing tip history.
 
-Below is a list of few ideas to get you started:
-- **Social app**
-    - Twitter
-    - Instagram
-    - Giphy
-    - Friendtech
-    - Spotify
-- **Blog**
-- **Voting** ([D21 - Janeček method](https://www.ih21.org/en/guidelines))
-- **DeFi**
-    - Crowdfunding
-    - Raffles
-    - Escrow
-    - Tipping
-    - Lending ([Save Documentation](https://docs.save.finance/))
-    - Liquid Staking ([Marinade Documentation](https://docs.marinade.finance/))
-    - Data Query with Pyth ([Pyth Documentation](https://docs.pyth.network/price-feeds))
-    - AMM ([Raydium Documentation](https://raydium.gitbook.io/raydium/))
-- **Gaming**
-    - Browser Game ([Gaming on Solana](https://solanacookbook.com/gaming/nfts-in-games.html#nfts-in-games))
+### 2. React UI
+The frontend enables users to tip creators and view tip history.
 
-### Deadline
-The deadline for this task is **Wednesday, November 27th, 2024 23:59 UTC**.
->[!CAUTION]
->Note that we will not accept submissions after the deadline.
+## Getting Started
 
-### Submission
-There are two folders, one for the Anchor project, and the second one for the frontend. Feel free to update this structure if you need to. If you make any significant changes to the structure, please describe them in the project description.
+### 1. Setting up the Anchor Program
+1. Navigate to the `anchor_project` folder:
+   ```bash
+   cd anchor_project
 
+2. Build and deploy the program
+    ```bash
+   anchor build
+   anchor deploy
 
-### Evaluation
-The evaluation process is based on the **requirements**. If you meet the requirements, you pass the task!
+### 2. Setting up the Frontend UI
 
-### Example Workflow
-Let's say you are going to implement the Twitter dApp as the Solana Program. Here's how the steps could look:
+1. Navigate to the `frontend` folder:
+   ```bash
+   cd frontend
 
-**1.** Implement Twitter dApp using the Anchor framework.
+2. Update env variable `NEXT_PUBLIC_CREATOR_WALLET_ADDRESS` 
 
-**2.** Test the Twitter dApp using the Anchor framework.
+3. Build and deploy the program
+    ```bash
+   npm install
+   npm run dev
 
-**3.** Deploy the Twitter dApp on the Solana Devnet.
+### How It Works:
+- **Tip a Creator**: Users can send SOL to a predefined creator wallet directly from the frontend.
+- **View Tip History**: The frontend displays a list of all tips sent to the creator, including the tipper's address, message, and amount.
 
-**4.** Using the Solana Scaffold template, implement frontend for the Twitter dApp.
-
-**5.** Publish Frontend using [Vercel](https://vercel.com).
-
-**6.** Describe dApp within the readme (Frontend + Anchor project).
-
-**7.** Submit the Twitter dApp using GitHub Classroom.
-
-### Useful Links
-- [Vercel](https://vercel.com)
-- [Solana dApp Scaffold](https://github.com/solana-labs/dapp-scaffold#solana-dapp-scaffold-next)
-- [Account Macro Constraints](https://docs.rs/anchor-lang/latest/anchor_lang/derive.Accounts.html#constraints)
-- [Metaplex Documentation](https://docs.metaplex.com/)
-- [Solana Developers Courses](https://solana.com/developers/courses)
-
------
-
-### Need help?
->[!TIP]
->If you have any questions, feel free to reach out to us on [Discord](https://discord.gg/z3JVuZyFnp).
+### Technical Details:
+- **Cross-Program Invocation (CPI)**: Used to transfer SOL from the tipper to the creator.
+- **Program Derived Address (PDA)**: Stores the tip history on-chain.
