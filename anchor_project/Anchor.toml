@@ -14,7 +14,7 @@ mint_me_a_moment = "7XL4LLTmwHYHCDe8FNpcKFuoeV1ftzczXHZuji3of4kC"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

@@ -30,7 +30,7 @@ The frontend enables users to tip creators and view tip history.
 2. Build and deploy the program
     ```bash
    anchor build
-   anchor deploy
+   anchor test
 
 ### 2. Setting up the Frontend UI
 
@@ -38,7 +38,7 @@ The frontend enables users to tip creators and view tip history.
    ```bash
    cd frontend
 
-2. Update env variable `NEXT_PUBLIC_CREATOR_WALLET_ADDRESS` 
+2. Create `.env` file and set `NEXT_PUBLIC_CREATOR_WALLET_ADDRESS` = your wallet address that accept solana
 
 3. Build and deploy the program
     ```bash
