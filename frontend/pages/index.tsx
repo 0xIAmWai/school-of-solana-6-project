@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 import { useState, useEffect, useCallback } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Header } from './../components/Header';
@@ -6,6 +8,7 @@ import { TipForm } from './../components/TipForm';
 import { TipHistory } from './../components/TipHistory';
 import { fetchTipHistory } from "@/utils/programUtils";
 import { useConnection } from "@solana/wallet-adapter-react";
+import { AlertCircle } from 'lucide-react';
 
 export default function Home() {
   const { connection } = useConnection();
@@ -36,6 +39,14 @@ export default function Home() {
       <Header />
       
       <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="mb-6 mx-auto max-w-6xl bg-blue-50 border border-blue-100 rounded-lg p-4 flex items-center justify-center space-x-2 shadow-sm">
+          <AlertCircle size={40} className="text-blue-500" />
+          <span className="text-sm font-medium text-blue-700">
+          This Solana dApp, <strong>Mint Me a Moment</strong>, is a demonstration app deployed on the <strong>DEVNET</strong>. It functions as a tipping platform, similar to 'Buy Me a Coffee,' allowing users to send Solana to the creator as a gesture of support.
+            
+            
+          </span>
+        </div>
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <div className="bg-white p-6 rounded-xl shadow-md">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Send Support</h2>

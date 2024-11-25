@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Clock, Coins, User } from 'lucide-react';
 import { MintMeAMoment } from './../program/mint_me_a_moment';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';

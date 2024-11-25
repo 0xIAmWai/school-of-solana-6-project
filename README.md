@@ -2,6 +2,8 @@
 
 **Mint Me A Moment** is a web3 application on the Solana blockchain that allows supporters to send SOL tips to their favorite creators. Inspired by the "Buy Me a Coffee" concept, this dApp leverages Solana's fast and low-cost transactions.
 
+https://mint-me-a-moment.surge.sh/
+
 ## Features
 
 * **Anchor-based Solana program** for managing tips and tracking history.
