@@ -64,8 +64,8 @@ export function TipHistory({
           <p className="text-gray-700 mb-2">{tip.message}</p>
           <div className="flex items-center space-x-1 text-sm text-gray-500">
             <Clock size={14} />
-            <time dateTime={new Date(tip.timestamp.toNumber()).toISOString()}>
-              {new Date(tip.timestamp.toNumber()).toLocaleString()}
+            <time dateTime={new Date(tip.timestamp.toNumber() * 1000).toISOString()}>
+              {new Date(tip.timestamp.toNumber() * 1000).toLocaleString()}
             </time>
           </div>
         </div>
