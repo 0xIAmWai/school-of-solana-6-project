@@ -5,7 +5,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import { PublicKey, SystemProgram } from '@solana/web3.js';
 import * as anchor from '@coral-xyz/anchor';
 import { useAnchorProvider } from "@/utils/anchorProvider";
-import { createProgram, creatorAddress, fetchTipHistory } from "@/utils/programUtils";
+import { createProgram, creatorAddress } from "@/utils/programUtils";
 
 export function TipForm({ onTipSuccess }: { onTipSuccess: () => void }) {
   const { publicKey } = useWallet();
@@ -54,12 +54,12 @@ export function TipForm({ onTipSuccess }: { onTipSuccess: () => void }) {
         .rpc();
       
       onTipSuccess();
-      toast.success('Thank you for your tip! 🎉');
+      toast.success('Thank you for your support! 🎉');
       
       setMessage('');
       setAmount('');      
     } catch (error) {
-      toast.error('Failed to send tip. Please try again.');
+      toast.error('Failed to send support. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -116,7 +116,7 @@ export function TipForm({ onTipSuccess }: { onTipSuccess: () => void }) {
           'Connect Wallet to Tip'
         ) : (
           <>
-            <span>Send Tip</span>
+            <span>Send Support</span>
             <SendIcon size={20} />
           </>
         )}
